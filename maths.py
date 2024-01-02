@@ -52,3 +52,26 @@ def volume(a: str, b: float):
         return ((5*(3+sqrt(5)))/12)*b**3
     else:
         return "Polyèdre non connu"
+
+def rendre_monnaie(prix, x, y, z, a, b):
+    argent = 20*x+10*y+5*z+2*a+b
+    dif = argent - prix
+    if dif < 0:
+        return None, None, None, None, None
+    a, b, c, d, e = 0, 0, 0, 0, 0
+    if dif >= 20:
+        a += (dif//20)
+        dif -= (dif//20)*20
+    if dif >= 10:
+        b += (dif//10)
+        dif -= (dif//10)*10
+    if dif >= 5:
+        c += (dif//5)
+        dif -= (dif//5)*5
+    if dif >= 2:
+        d += (dif//2)
+        dif -= (dif//2)*2
+    if dif >= 1:
+        e += dif
+        dif -= dif
+    return a, b, c, d, e
