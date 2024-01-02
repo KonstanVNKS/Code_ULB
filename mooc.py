@@ -1,6 +1,6 @@
 # imports
 from math import sqrt
-from random import randint
+from random import randint, seed
 
 
 
@@ -125,4 +125,71 @@ def fact(n: int):
     return fact
 
 
+def alea_dice(s):
+    seed(s)
+    d1 = randint(1, 6)
+    d2 = randint(1, 6)
+    d3 = randint(1, 6)
+
+    return (d1, d2, d3) == (4, 2, 1) or (d1, d2, d3) == (2, 4, 1) or (d1, d2, d3) == (1, 4, 2) or (d1, d2, d3) == (
+    2, 1, 4) or (d1, d2, d3) == (4, 1, 2) or (d1, d2, d3) == (1, 2, 4)
+
+
+def rendre_monnaie(prix, x, y, z, a, b):
+    argent = 20*x+10*y+5*z+2*a+b
+    dif = argent - prix
+    if dif < 0:
+        return None, None, None, None, None
+    a, b, c, d, e = 0, 0, 0, 0, 0
+    if dif >= 20:
+        a += (dif//20)
+        dif -= (dif//20)*20
+    if dif >= 10:
+        b += (dif//10)
+        dif -= (dif//10)*10
+    if dif >= 5:
+        c += (dif//5)
+        dif -= (dif//5)*5
+    if dif >= 2:
+        d += (dif//2)
+        dif -= (dif//2)*2
+    if dif >= 1:
+        e += dif
+        dif -= dif
+    return a, b, c, d, e
+
+
+def rac_eq_2nd_deg(a, b, c):
+    d = b**2 - 4*a*c
+    x1 = (-b + d) / 2*a
+    x2 = (-b - d) / 2*a
+    if d < 0:
+        return ()
+    elif d == 0:
+        return (-b/2*a ,)
+    else:
+        return (min(x1,x2), max(x1,x2))
+
+
+def catalan(n):
+    if n >= 0:
+        return 2*fact(n) / fact(n+1)*fact(n)
+
+
+def bat(j1, j2):
+    #0 = pierre, 1 = feuille, 2 = ciseaux
+    if j1 == 0 and j2 == 2:
+        return True
+    elif j1 == 1 and j2 == 0:
+        return True
+    elif j1 == 2 and j2 == 1:
+        return True
+    elif j1 == 0 and j2 == 1:
+        return False
+    elif j1 == 1 and j2 == 2:
+        return False
+    elif j1 == 2 and j2 == 0:
+        return False
+    elif j1 == j2:
+        return False
 
