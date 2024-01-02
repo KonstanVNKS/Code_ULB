@@ -75,3 +75,35 @@ def rendre_monnaie(prix, x, y, z, a, b):
         e += dif
         dif -= dif
     return a, b, c, d, e
+
+def premier(n):
+    res = True
+    for i in range(2, (n // 2 + 1)):
+        if not n % i:
+            res = False
+    if n in [0, 1]:
+        res = False
+    return res
+
+
+def prime_numbers(n):
+    liste_premier = []
+    i = 2
+    if type(n) is not int or n < 0:
+        liste_premier = None
+    else:
+        while len(liste_premier) < n:
+            if premier(i):
+                liste_premier.append(i)
+            i += 1
+    return liste_premier
+
+
+def distance_points(a,b):
+    return sqrt((a[0]-b[0])**2 + (a[1]-b[1])**2)
+
+
+def duree(debut, fin):
+    heure, minute = divmod(fin[1] - debut[1], 60)
+    heure = (heure + (fin[0] - debut[0])) % 24
+    return heure, minute
